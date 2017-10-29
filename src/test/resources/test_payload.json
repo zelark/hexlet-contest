@@ -1,0 +1,12 @@
+["html", [
+  ["head", [
+    ["title", "hello, hexlet!"]
+  ]],
+  ["body", { "class": "container" }, [
+    ["h1", { "class": "header" }, "html builder example"],
+    ["div", [
+      ["img", { "class": "image", "src": "cat.jpg" }],
+      ["span", "span text"]
+    ]]
+  ]]
+]]
