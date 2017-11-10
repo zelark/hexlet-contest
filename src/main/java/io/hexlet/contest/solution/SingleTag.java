@@ -16,6 +16,6 @@ public final class SingleTag extends Tag {
 
   @Override
   public String toString() {
-    return String.format("<%s%s>", this.getName(), this.attrsToString());
+    return String.format("<%s%s />", this.getName(), this.attrsToString());
   }
 }

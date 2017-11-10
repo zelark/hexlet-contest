@@ -13,13 +13,11 @@ import lombok.Setter;
 public class Node {
   private String name;
   private Map<String, String> attributes;
-  private String body;
-  private List<Tag> children;
+  private List<Object> body;
 
   public Node(String name) {
     this.name = name;
     this.attributes = emptyMap();
-    this.body = "";
-    this.children = emptyList();
+    this.body = emptyList();
   }
 }
