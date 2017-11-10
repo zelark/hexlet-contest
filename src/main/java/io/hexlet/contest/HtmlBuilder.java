@@ -14,8 +14,31 @@ public class HtmlBuilder {
     wow.add("hr");
   }
 
-  String first(List input) {
-    return (String) input.get(0);
+  Object first(List input) {
+    try {
+      return input.get(0);
+    }
+    catch (Exception e) {
+      return null;
+    }
+  }
+
+  Object second(List input) {
+    try {
+      return input.get(1);
+    }
+    catch (Exception e) {
+      return null;
+    }
+  }
+
+  Object third(List input) {
+    try {
+      return input.get(2);
+    }
+    catch (Exception e) {
+      return null;
+    }
   }
 
   List rest(List input) {
@@ -23,40 +46,57 @@ public class HtmlBuilder {
   }
 
 
-
   public String build(List input) {
 
     String result = "<" + first(input) + "";
 
-    if (input.get(1) instanceof Map) {
-      Map<String, String> params = (Map<String, String>) input.get(1);
+    if (second(input) instanceof Map) {
+      Map<String, String> params = (Map<String, String>) second(input);
 
       for (String param : params.keySet()) {
         result += " " + param + "=\"" + params.get(param) + "\"";
       }
+    }
 
-      result += ">";
-
-      if (input.get(2) instanceof String) {
-        result += input.get(2);
-      }
-      else {
-        result += build((List) input.get(2));
-      }
-      return result + "</" + first(input) + ">";
+    if (wow.contains(first(input))) {
+      result += " />";
     }
     else {
       result += ">";
-
-      if (input.get(1) instanceof String) {
-        result += input.get(1);
-      }
-      else {
-        result += build((List) input.get(1));
-      }
-      return result + "</" + first(input) + ">";
     }
+
+    if (second(input) instanceof Map && third(input) instanceof String) {
+      result += third(input);
+    }
+    if (second(input) instanceof String) {
+      result += second(input);
+    }
+
+    List other = rest(input);
+
+    if (first(other) instanceof Map) {
+      other = rest(other);
+    }
+
+    if (first(other) instanceof String) {
+      other = rest(other);
+    }
+
+
+    for (Object q : other) {
+      if (q instanceof List) {
+        result += build((List) q);
+      }
+      else if (q instanceof String) {
+        result += q;
+      }
+    }
+
+
+    if (!wow.contains(first(input))) {
+      result += "</" + first(input) + ">";
+    }
+
+    return result;
   }
-
-
 }
