@@ -1,0 +1,7 @@
+["html",
+  ["head", ["title", "hello, guys!"]],
+  ["body", { "class": "container" },
+    ["h1", { "class": "header" }, "html builder example"],
+    ["div",
+      ["img", { "class": "image", "src": "cat.jpg" }],
+      ["span", "span text ", ["b", "lol"], ["hr"], "span text"]]]]
